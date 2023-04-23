@@ -1,0 +1,25 @@
+.search-button {
+  margin: 0 20px;
+  align-items: center;
+  background: #ebedf0;
+  border: 0;
+  border-radius: 40px;
+  color: #969faf;
+  cursor: pointer;
+  display: flex;
+  font-weight: 500;
+  height: 36px;
+  justify-content: space-between;
+  padding: 0 16px;
+  -webkit-user-select: none;
+  user-select: none;
+  gap: 7px;
+  font-size: 1rem;
+}
+
+.search-click {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}

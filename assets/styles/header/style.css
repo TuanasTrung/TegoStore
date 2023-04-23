@@ -1,0 +1,33 @@
+.header {
+  display: flex;
+  height: 65px;
+  background-color: #ffffff;
+  box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.05);
+  padding: 0px 14px;
+  position: sticky;
+  left: 0%;
+  right: 0%;
+  top: 0%;
+  bottom: 0%;
+  z-index: 1;
+}
+
+.header-left {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  float: left;
+}
+
+.header-title {
+  font-weight: 600;
+  font-size: 16px;
+  color: #01048a;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  float: right;
+}
