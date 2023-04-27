@@ -18,6 +18,7 @@ import { FeatureToysStyle } from "./style";
 import { useMemo } from "react";
 import { PATH_JOB } from "../../routes/path";
 import { SliderStyle } from "../swiperSlider/style";
+import { MainContainer } from "../layouts/style";
 
 const toyCategories = []
 
@@ -73,60 +74,62 @@ const FeatureJobs = () => {
   }
 
   return (
-    <FeatureToysStyle>
-      <Box display="flex" sx={{ width: '100%' }}>
-        <Box className="feature-title-box">
-          <div className="title-line line-right">
-            <strong>Danh mục</strong>
-            <span></span>
-          </div>
-          <div className="title-line line-left">
-            <span></span>
-            <strong>Nổi bật</strong>
-          </div>
+    <MainContainer>
+      <FeatureToysStyle>
+        <Box display="flex" sx={{ width: '100%' }}>
+          <Box className="feature-title-box">
+            <div className="title-line line-right">
+              <strong>Danh mục</strong>
+              <span></span>
+            </div>
+            <div className="title-line line-left">
+              <span></span>
+              <strong>Nổi bật</strong>
+            </div>
 
-          <Box textAlign="center" mt={6} mb={2}>
-            <RiMouseLine color={palette.text.sub} size={20} />
+            <Box textAlign="center" mt={6} mb={2}>
+              <RiMouseLine color={palette.text.sub} size={20} />
+            </Box>
+            <Box textAlign="center">
+              <p className="title-desc">
+                <RiArrowLeftSLine color={palette.text.sub} size={16} />
+                <span>Trượt để khám phá</span>
+                <RiArrowRightSLine color={palette.text.sub} size={16} />
+              </p>
+            </Box>
           </Box>
-          <Box textAlign="center">
-            <p className="title-desc">
-              <RiArrowLeftSLine color={palette.text.sub} size={16} />
-              <span>Trượt để khám phá</span>
-              <RiArrowRightSLine color={palette.text.sub} size={16} />
-            </p>
+
+          <Box flex={1} className="toys-box">
+            <SwiperSlider
+              items={toyCategories.map(toy => (
+                <ToyCatItem key={toy.type} item={toy} />
+              ))}
+              spaceBetween={24}
+              navigation={{ enabled: false }}
+              pagination={{ enabled: false }}
+              breakpoints={{
+                0: {
+                  slidesPerView: 1,
+                  pagination: { enabled: false },
+                  loop: true,
+                },
+                768: {
+                  slidesPerView: 2,
+                  pagination: { enabled: false },
+                  loop: toyCategories.length > 2,
+                },
+                1200: {
+                  slidesPerView: 4,
+                  pagination: { enabled: false },
+                  loop: toyCategories.length > 8,
+                },
+              }}
+              style={{ paddingBottom: '6px' }}
+            />
           </Box>
         </Box>
-
-        <Box flex={1} className="toys-box">
-          <SwiperSlider
-            items={toyCategories.map(toy => (
-              <ToyCatItem key={toy.type} item={toy} />
-            ))}
-            spaceBetween={24}
-            navigation={{ enabled: false }}
-            pagination={{ enabled: false }}
-            breakpoints={{
-              0: {
-                slidesPerView: 1,
-                pagination: { enabled: false },
-                loop: true,
-              },
-              768: {
-                slidesPerView: 2,
-                pagination: { enabled: false },
-                loop: toyCategories.length > 2,
-              },
-              1200: {
-                slidesPerView: 4,
-                pagination: { enabled: false },
-                loop: toyCategories.length > 8,
-              },
-            }}
-            style={{ paddingBottom: '6px' }}
-          />
-        </Box>
-      </Box>
-    </FeatureToysStyle>
+      </FeatureToysStyle>
+    </MainContainer>
   )
 }
 

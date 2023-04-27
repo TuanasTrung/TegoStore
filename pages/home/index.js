@@ -1,12 +1,18 @@
 import React from 'react'
 import { MainContainer } from '../../components/layouts/style'
 import FeatureCategories from '../../components/featureCategories'
+import Page from '../../components/Page'
+import TopProduct from '../../components/topProduct'
 
 const HomePage = () => {
   return (
-    <MainContainer>
-      <FeatureCategories/>
-    </MainContainer>
+    <>
+      <Page title='Trang chủ'>
+        <TopProduct />
+
+        <FeatureCategories />
+      </Page>
+    </>
   )
 }
 
