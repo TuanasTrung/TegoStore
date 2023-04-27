@@ -1,9 +1,14 @@
+.ant-layout-header {
+  padding-inline: 0 !important;
+}
+
 .header {
   display: flex;
+  justify-content: space-between;
   height: 65px;
   background-color: #ffffff;
   box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.05);
-  padding: 0px 14px;
+  /* padding: 0px 100px; */
   position: sticky;
   left: 0%;
   right: 0%;
@@ -16,7 +21,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  flex: 1;
+  /* flex: 1; */
   float: left;
 }
 
@@ -30,4 +35,11 @@
   display: flex;
   align-items: center;
   float: right;
+  height: 100%;
+}
+
+.profile {
+  display: flex;
+  align-items: center;
+  gap: 7px;
 }

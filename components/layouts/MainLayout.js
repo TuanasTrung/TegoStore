@@ -1,12 +1,15 @@
 import React from 'react';
 import { Layout } from 'antd';
 import Header from '../header/index';
+import Sidebar from '../sidebar/index';
+import { MainContainer } from './style';
 
-const MainLayout = () => {
+const MainLayout = ({ children }) => {
   return (
-    <Layout>
+    <>
       <Header />
-    </Layout>
+      {children}
+    </>
   )
 }
 

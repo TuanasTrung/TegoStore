@@ -16,10 +16,3 @@
   gap: 7px;
   font-size: 1rem;
 }
-
-.search-click {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-}
