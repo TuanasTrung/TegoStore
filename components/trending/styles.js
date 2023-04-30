@@ -23,8 +23,15 @@ export const TrendingStyles = styled('div')(() => ({
     '.item-description': {
       textAlign: 'center'
     },
-    'item-button': {
-
+    '.item-button': {
+      color: '#fff',
+      fontWeight: 600,
+      backgroundColor: '#F77A0C',
+      marginTop: '20px',
+      display: 'flex',
+      alignItems: 'center',
+      gap: '5px',
+      padding: '7px 16px'
     }
   },
 }))
