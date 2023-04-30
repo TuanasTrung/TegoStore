@@ -18,10 +18,10 @@ export const TopProductStyle = styled(Box)(() => ({
     height: '100%',
     position: 'relative',
     '.button-more-detail': {
-      background: '#F77A0C',
+      background: '#fff',
       padding: '7px 5px 7px 15px',
       '>span': {
-        color: '#fff',
+        color: '#000',
         fontSize: '18px',
       }
     },

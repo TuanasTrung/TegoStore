@@ -11,7 +11,7 @@ const TopProduct = () => {
         <Box className='box-more-detail'>
           <Button className='button-more-detail'>
             <span>Xem thêm</span>
-            <RiArrowDropRightLine size={30} color='#fff' />
+            <RiArrowDropRightLine size={35} color='#000' />
           </Button>
         </Box>
       </MainContainer>
