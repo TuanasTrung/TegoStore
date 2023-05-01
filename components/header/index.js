@@ -23,9 +23,6 @@ const AuthenBox = styled(Box)(() => ({
   },
   '& .button-signIn': {
     padding: '7px 16px',
-    '&:hover': {
-      background: 'rgba( 255, 250, 250, 1 )',
-    },
     '>span': {
       color: '#F77A0C',
       fontWeight: '600',
@@ -35,7 +32,7 @@ const AuthenBox = styled(Box)(() => ({
 }))
 
 const HeaderComponent = () => {
-  const [authentication, setAuthentication ] = useState(false);
+  const [authentication, setAuthentication] = useState(false);
   return (
     <Header className='header'>
       <MainContainer>
@@ -49,27 +46,27 @@ const HeaderComponent = () => {
         </Box>
         <Box className='header-right'>
           {authentication ? (
-          <Box className='profile'>
-            <RiAccountCircleLine size={35} color='#F77A0C' />
-            <Box >
-              <Typography variantMapping='p' variant='subtitle2'>Xin chào,</Typography>
-              <Typography variantMapping='p' variant='subtitle1'>Trung</Typography>
+            <Box className='profile'>
+              <RiAccountCircleLine size={35} color='#F77A0C' />
+              <Box >
+                <Typography variantMapping='p' variant='subtitle2'>Xin chào,</Typography>
+                <Typography variantMapping='p' variant='subtitle1'>Trung</Typography>
+              </Box>
             </Box>
-          </Box>
           ) : (
-          <AuthenBox>
-            <Box className='box-authen'>
-              <Button className='button-signUp'>
-                <span>Đăng ký</span>
-              </Button>
-            </Box>
+            <AuthenBox>
+              <Box className='box-authen'>
+                <Button className='button-signUp'>
+                  <span>Đăng ký</span>
+                </Button>
+              </Box>
 
-            <Box className='box-authen'>
-              <Button className='button-signIn'>
-                <span>Đăng nhập</span>
-              </Button>
-            </Box>
-          </AuthenBox>
+              <Box className='box-authen'>
+                <Button className='button-signIn'>
+                  <span>Đăng nhập</span>
+                </Button>
+              </Box>
+            </AuthenBox>
           )}
         </Box>
       </MainContainer>

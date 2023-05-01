@@ -12,9 +12,9 @@ const HomePage = () => {
       <Page title='Trang chủ'>
         <TopProduct />
 
-        <TrendingNow />
+        <SliderGrid />
 
-        {/* <SliderGrid /> */}
+        <TrendingNow />
 
         <FeatureCategories />
       </Page>

@@ -9,7 +9,7 @@ export const SliderStyle = styled('div')(({ theme }) => ({
         marginTop: 16,
         position: 'static',
         '.swiper-pagination-bullet': {
-          background: '#D0D4DB',
+          background: '#F77A0C',
           transition: 'all ease-in-out 0.2s',
           '&.swiper-pagination-bullet-active': {
             background: theme.palette.text.active,
