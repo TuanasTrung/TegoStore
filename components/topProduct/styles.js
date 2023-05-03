@@ -13,8 +13,9 @@ export const TopProductStyle = styled(Box)(() => ({
   '& .box-more-detail': {
     display: 'flex',
     alignItems: 'center',
+    justifyContent: 'end',
     float: 'left',
-    width: '30%',
+    width: '90%',
     height: '100%',
     position: 'relative',
     '.button-more-detail': {

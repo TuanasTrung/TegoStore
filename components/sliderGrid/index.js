@@ -10,30 +10,40 @@ const products = [
     id: 1,
     image: '/assets/images/product/0.png',
     name: 'DINOSAUR',
+    price: '300.000',
+    slug: '1',
     rating: 5,
   },
   {
     id: 2,
     image: '/assets/images/product/1.png',
     name: 'DINOSAUR',
+    price: '300.000',
+    slug: '2',
     rating: 5,
   },
   {
     id: 3,
     image: '/assets/images/product/2.png',
     name: 'DINOSAUR',
+    price: '300.000',
+    slug: '3',
     rating: 4,
   },
   {
     id: 4,
     image: '/assets/images/product/3.png',
     name: 'DINOSAUR',
+    price: '300.000',
+    slug: '4',
     rating: 4,
   },
   {
     id: 5,
     image: '/assets/images/product/4.png',
     name: 'DINOSAUR',
+    price: '300.000',
+    slug: '5',
     rating: 4,
   },
 ]
@@ -42,7 +52,7 @@ const SliderGrid = () => {
 
   const renderTitle = (title) => {
     return (
-      <Box>
+      <Box sx={{ margin: '10px 0' }}>
         <span>
           {title}
         </span>
@@ -60,17 +70,18 @@ const SliderGrid = () => {
           {(products.slice(i * itemsPerSlide, (i + 1) * itemsPerSlide)).map((pr, index) => (
             <Grid item md={3} key={pr.id} className='grid-items'>
               <Box className='grid-item-product'>
-                <Box className='grid-item-image'>
-                  <img src={pr.image} />
-                </Box>
-
-                <Divider variant='middle' sx={{ margin: '16px', borderColor: '#F0F2F5' }} />
+                <Link href={`/product/${pr.slug}`}>
+                  <Box className='grid-item-image'>
+                    <img src={pr.image} />
+                  </Box>
+                </Link>
 
                 <Box className='grid-item-information'>
                   <Typography>{pr.name}</Typography>
                   <Rating name="simple-controlled"
                     value={pr.rating}
                     readOnly />
+                  <Typography>{pr.price} VND</Typography>
                   <Button className='item-button' onClick={() => console.log('id: ', pr.id)}>
                     Add to Bag
                   </Button>
@@ -94,7 +105,7 @@ const SliderGrid = () => {
   return (
     <SliderGridStyle>
       <MainContainer>
-        {renderTitle('Product')}
+        {renderTitle('Đồ chơi dành cho bạn')}
         {renderSliders()}
       </MainContainer>
     </SliderGridStyle>

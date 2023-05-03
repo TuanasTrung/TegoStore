@@ -9,10 +9,10 @@ const TopProduct = () => {
     <TopProductStyle>
       <MainContainer>
         <Box className='box-more-detail'>
-          <Button className='button-more-detail'>
+          {/* <Button className='button-more-detail'>
             <span>Xem thêm</span>
             <RiArrowDropRightLine size={35} color='#000' />
-          </Button>
+          </Button> */}
         </Box>
       </MainContainer>
     </TopProductStyle>

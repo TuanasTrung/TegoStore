@@ -5,6 +5,7 @@ import { styled } from "@mui/material/styles";
 import { MainContainer } from '../layouts/style';
 import { RiAccountCircleLine } from 'react-icons/ri';
 import Search from '../search';
+import Link from 'next/link';
 
 const { Header } = Layout;
 
@@ -15,6 +16,9 @@ const AuthenBox = styled(Box)(() => ({
   '& .button-signUp': {
     padding: '7px 16px',
     background: '#F77A0C',
+    '&:hover': {
+      background: 'F77A0C'
+    },
     '>span': {
       color: '#fff',
       fontWeight: '600',
@@ -37,11 +41,13 @@ const HeaderComponent = () => {
     <Header className='header'>
       <MainContainer>
         <Box className='header-left'>
-          <Box className='header-title'>
-            <span>
-              TEGO
-            </span>
-          </Box>
+          <Link href={'/'}>
+            <Box className='header-title'>
+              <span>
+                TEGO
+              </span>
+            </Box>
+          </Link>
           <Search />
         </Box>
         <Box className='header-right'>
@@ -56,15 +62,19 @@ const HeaderComponent = () => {
           ) : (
             <AuthenBox>
               <Box className='box-authen'>
-                <Button className='button-signUp'>
-                  <span>Đăng ký</span>
-                </Button>
+                <Link href={'/'}>
+                  <Button className='button-signUp'>
+                    <span>Đăng ký</span>
+                  </Button>
+                </Link>
               </Box>
 
               <Box className='box-authen'>
-                <Button className='button-signIn'>
-                  <span>Đăng nhập</span>
-                </Button>
+                <Link href={'/'}>
+                  <Button className='button-signIn'>
+                    <span>Đăng nhập</span>
+                  </Button>
+                </Link>
               </Box>
             </AuthenBox>
           )}

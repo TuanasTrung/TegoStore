@@ -26,7 +26,7 @@ const toyTrending = [
 const TrendingNow = () => {
   const renderTitle = (title) => {
     return (
-      <Box>
+      <Box sx={{ margin: '10px 0 ' }}>
         <span>
           {title}
         </span>
@@ -37,7 +37,7 @@ const TrendingNow = () => {
   return (
     <TrendingStyles>
       <MainContainer>
-        {renderTitle('Trending now')}
+        {renderTitle('Đồ chơi được yêu thích')}
 
         <Grid container spacing={2}>
           {toyTrending.map((toy, index) => (
