@@ -17,7 +17,7 @@ const AuthenBox = styled(Box)(() => ({
     padding: '7px 16px',
     background: '#F77A0C',
     '&:hover': {
-      background: 'F77A0C'
+      background: '#F77A0C'
     },
     '>span': {
       color: '#fff',
@@ -62,7 +62,7 @@ const HeaderComponent = () => {
           ) : (
             <AuthenBox>
               <Box className='box-authen'>
-                <Link href={'/'}>
+                <Link href={'/register'}>
                   <Button className='button-signUp'>
                     <span>Đăng ký</span>
                   </Button>
@@ -70,7 +70,7 @@ const HeaderComponent = () => {
               </Box>
 
               <Box className='box-authen'>
-                <Link href={'/'}>
+                <Link href={'/login'}>
                   <Button className='button-signIn'>
                     <span>Đăng nhập</span>
                   </Button>

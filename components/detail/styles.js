@@ -2,7 +2,7 @@ import { styled } from "@mui/material/styles";
 import { Box } from '@mui/material';
 
 export const ToyDetailStyles = styled(Box)(() => ({
-  marginTop: '20px',
+  margin: '20px 0',
   '.detail-image': {
     display: 'flex',
     justifyContent: 'center',

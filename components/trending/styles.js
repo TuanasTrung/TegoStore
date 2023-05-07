@@ -21,7 +21,8 @@ export const TrendingStyles = styled('div')(() => ({
       margin: '10px 0'
     },
     '.item-description': {
-      textAlign: 'center'
+      textAlign: 'center',
+      minHeight: '50px',
     },
     '.item-button': {
       color: '#fff',
