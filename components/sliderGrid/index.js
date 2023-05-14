@@ -4,6 +4,7 @@ import { MainContainer } from '../layouts/style'
 import { Box, Divider, Grid, Rating, Button, Typography } from '@mui/material'
 import Link from 'next/link'
 import SwiperSlider from '../swiperSlider'
+import { useGetAllProductsQuery } from '../../features/productsApi'
 
 const products = [
   {
@@ -49,6 +50,8 @@ const products = [
 ]
 
 const SliderGrid = () => {
+
+  const { data, error, isLoading } = useGetAllProductsQuery()
 
   const renderTitle = (title) => {
     return (
