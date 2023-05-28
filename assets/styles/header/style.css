@@ -42,4 +42,12 @@
   display: flex;
   align-items: center;
   gap: 7px;
+  padding: 5px 20px;
+  border: 1px solid white
+}
+
+.profile:hover {
+  border: 1px solid #F77A0C;
+  border-radius: 6px;
+  cursor: pointer;
 }

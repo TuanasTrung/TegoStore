@@ -1,26 +1,33 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { useSnackbar } from 'notistack'
 import { useRouter } from 'next/router'
 import * as Yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { LoginFormStyle } from './styles'
-import { Box, Button, Stack } from '@mui/material'
+import { RiAtLine, RiLock2Line } from "react-icons/ri";
+import { Box, Button, IconButton, Stack } from '@mui/material'
 import { FormProvider, RHFTextField } from '../../hook-form'
 import { useForm } from 'react-hook-form'
+import { loginUser } from '../../../redux/apiRequest'
+// import useAuth from '../../../hook/useAuth'
 
 const LoginForm = () => {
-
+  // const { login } = useAuth();
+  const dispatch = useDispatch();
+  const { enqueueSnackbar } = useSnackbar();
   const router = useRouter();
-  const { redirectPath = '/home', userName: rqUserName = '' } = router.query;
+  const { redirectPath = '/', } = router.query;
 
   const LoginSchema = Yup.object().shape({
-    email: Yup.string().email('Email sai định dạng').required('Email không được để trống'),
+    username: Yup.string().required('Username không được để trống'),
     password: Yup.string()
       .min(6, 'Mật khẩu cần tối thiểu 6 ký tự')
       .required("Mật khẩu không được bỏ trống"),
   });
 
   const defaultValues = {
-    email: '',
+    username: '',
     password: "",
   };
 
@@ -33,12 +40,28 @@ const LoginForm = () => {
   const {
     setError,
     handleSubmit,
-    formState: { errors, isValid, isSumitting },
+    formState: { errors, isValid, isSubmiting },
     watch,
   } = methods;
 
-  const onSubmit = (data) => {
-    console.log('data: ', data)
+  const onSubmit = async (data) => {
+    // const userLogin = {
+    //   username: data.username,
+    //   password: data.password,
+    // };
+    // console.log('userLogin: ', userLogin)
+    // console.log('data: ', data)
+
+    await loginUser(data, dispatch, router.push)
+
+    // try {
+    //   await login(data.email, data.password);
+    //   enqueueSnackbar('Đăng nhập thành công!');
+
+    //   // redirectPath ? router.push(redirectPath) : router.push('/');
+    // } catch (error) {
+    //   enqueueSnackbar('Đăng nhập thất bại !!')
+    // }
   }
 
   return (
@@ -46,20 +69,33 @@ const LoginForm = () => {
       <LoginFormStyle>
         <Box className='login-form'>
           <Stack spacing={3}>
-            <RHFTextField
-              name='email'
-              label='Email' 
-            />
+            <Box className='input-field'>
+              <IconButton disableRipple>
+                <RiAtLine />
+              </IconButton>
+              <RHFTextField
+                name='username'
+                label='Username'
+                required
+              />
+            </Box>
 
-            <RHFTextField
-              name='password'
-              label='Mật khẩu'
-              type='password'
-            />
+            <Box className='input-field'>
+              <IconButton disableRipple>
+                <RiLock2Line />
+              </IconButton>
+              <RHFTextField
+                name='password'
+                label='Mật khẩu'
+                type='password'
+                required
+              />
+            </Box>
           </Stack>
-
           <Button
-            type='submit'>
+            type='submit'
+            className='button-form'
+          >
             Đăng nhập
           </Button>
         </Box>

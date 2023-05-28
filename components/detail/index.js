@@ -3,59 +3,21 @@ import { ToyDetailStyles } from './styles'
 import { RiAddLine, RiSubtractLine, RiErrorWarningLine } from "react-icons/ri";
 import { Box, Grid, Typography, Button, Tooltip, IconButton } from '@mui/material'
 import { useRouter } from 'next/router'
-
-const products = [
-  {
-    id: 1,
-    image: '/assets/images/product/0.png',
-    name: 'DINOSAUR',
-    price: '300.000',
-    slug: '1',
-    status: 'Còn hàng',
-    rating: 5,
-  },
-  {
-    id: 2,
-    image: '/assets/images/product/1.png',
-    name: 'DINOSAUR',
-    price: '300.000',
-    status: 'Còn hàng',
-    slug: '2',
-    rating: 5,
-  },
-  {
-    id: 3,
-    image: '/assets/images/product/2.png',
-    name: 'DINOSAUR',
-    price: '300.000',
-    status: 'Còn hàng',
-    slug: '3',
-    rating: 4,
-  },
-  {
-    id: 4,
-    image: '/assets/images/product/3.png',
-    name: 'DINOSAUR',
-    price: '300.000',
-    status: 'Còn hàng',
-    slug: '4',
-    rating: 4,
-  },
-  {
-    id: 5,
-    image: '/assets/images/product/4.png',
-    name: 'DINOSAUR',
-    price: '300.000',
-    status: 'Còn hàng',
-    slug: '5',
-    rating: 4,
-  },
-]
+import { getProductById } from '../../redux/apiRequest';
+import { useDispatch, useSelector } from 'react-redux';
+import ButtonAddCart from '../buttonAddCart';
 
 const ToyDetailComponent = () => {
+  const dispatch = useDispatch();
+  const product = useSelector(state => state.product.product?.product)
+
   const [quantity, setQuantity] = useState(0)
-  const limitQuantityCanBuy = 2;
+  const limitQuantityCanBuy = product?.quantity;
   const router = useRouter();
+
+  useEffect(() => {
+    getProductById(router.query.slug, dispatch)
+  }, [])
 
   const handleMinusQuantity = () => {
     setQuantity(quantity - 1)
@@ -70,14 +32,14 @@ const ToyDetailComponent = () => {
       <Grid container className='grid-container'>
         <Grid item md={8}>
           <Box className='detail-image'>
-            <img src={products[0].image} />
+            <img src={product?.image} />
           </Box>
         </Grid>
         <Grid item md={4}>
           <Box className='detail-information'>
-            <Typography className='detail-name'>{products[0].name}</Typography>
-            <Typography className='detail-price'>{products[0].price} VND</Typography>
-            <Typography className='detail-status'>{products[0].status}</Typography>
+            <Typography className='detail-name'>{product?.name}</Typography>
+            <Typography className='detail-price'>{product?.price} VND</Typography>
+            <Typography className='detail-status'>{product?.status}</Typography>
             <Box className='detail-quantity'>
               <Box className='change-quantity'>
                 <Button className='minus' onClick={handleMinusQuantity} disabled={quantity === 0}>
@@ -98,9 +60,8 @@ const ToyDetailComponent = () => {
               </Box>
             </Box>
             <Box display={'flex'}>
-              <Button className='item-button' onClick={() => console.log('id: ', products[0].id)}>
-                Add to Bag
-              </Button>
+              <ButtonAddCart
+                product={product} />
             </Box>
           </Box>
         </Grid>

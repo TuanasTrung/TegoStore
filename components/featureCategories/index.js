@@ -15,9 +15,9 @@ import { useRouter } from "next/router";
 import SwiperSlider from '../swiperSlider/index';
 
 import { FeatureToysStyle } from "./style";
-import { useMemo } from "react";
-import { PATH_JOB } from "../../routes/path";
-import { SliderStyle } from "../swiperSlider/style";
+// import { useMemo } from "react";
+// import { PATH_JOB } from "../../routes/path";
+// import { SliderStyle } from "../swiperSlider/style";
 import { MainContainer } from "../layouts/style";
 
 const toyCategories = []

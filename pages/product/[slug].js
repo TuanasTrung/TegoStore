@@ -9,7 +9,7 @@ const ToyDetail = () => {
     <Page title='Sản phẩm'>
       <MainContainer>
         <ToyDetailComponent />
-
+        
         <TrendingNow />
       </MainContainer>
     </Page>

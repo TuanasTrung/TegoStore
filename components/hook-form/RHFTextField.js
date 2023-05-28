@@ -17,6 +17,20 @@ export default function RHFTextField({ name, beforeChange, ...other }) {
 
         return (
           <TextField
+            sx={{
+              '&.MuiTextField-root': {
+                height: '100%',
+                'label':{
+                },
+                '& .MuiInputBase-root': {
+                  height: '50px',
+                  'input': {
+                    height: '100%',
+                    padding: '0 14px '
+                  }
+                }
+              }
+            }}
             {...field}
             error={!!error}
             helperText={error?.message}

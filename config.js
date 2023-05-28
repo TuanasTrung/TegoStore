@@ -20,3 +20,5 @@ export const GENDER = {
   FEMALE: 1,
   NOT_REQUIRE: 2,
 };
+
+export const DOMAIN_SERVER_API = 'http://localhost:3001'
