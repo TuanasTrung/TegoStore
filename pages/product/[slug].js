@@ -6,10 +6,10 @@ import TrendingNow from '../../components/trending'
 
 const ToyDetail = () => {
   return (
-    <Page title='Sản phẩm'>
+    <Page title='Chi tiết sản phẩm'>
       <MainContainer>
         <ToyDetailComponent />
-        
+
         <TrendingNow />
       </MainContainer>
     </Page>

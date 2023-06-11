@@ -30,7 +30,7 @@ export const createAxios = (user, dispatch, stateSuccess) => {
           accessToken: data.accessToken,
         }
         dispatch(stateSuccess(refreshUser));
-        config.headers["token"] = "Bearer" + data.accessToken
+        config.headers["token"] = "Bearer " + data.accessToken
       }
       return config;
     },

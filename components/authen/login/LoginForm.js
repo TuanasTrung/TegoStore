@@ -18,6 +18,7 @@ const LoginForm = () => {
   const { enqueueSnackbar } = useSnackbar();
   const router = useRouter();
   const { redirectPath = '/', } = router.query;
+  const user = useSelector(state => state.auth.login.currentUser)
 
   const LoginSchema = Yup.object().shape({
     username: Yup.string().required('Username không được để trống'),
@@ -52,7 +53,12 @@ const LoginForm = () => {
     // console.log('userLogin: ', userLogin)
     // console.log('data: ', data)
 
-    await loginUser(data, dispatch, router.push)
+    try {
+      await loginUser(data, dispatch, router.push)
+      enqueueSnackbar('Đăng nhập thành công')
+    } catch (error) {
+      console.log(error)
+    }
 
     // try {
     //   await login(data.email, data.password);

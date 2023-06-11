@@ -1,7 +1,20 @@
 import { styled } from "@mui/material/styles";
 
 export const SliderGridStyle = styled('div')(() => ({
-  fontSize: '2rem',
+  fontSize: '1rem',
+  '.title': {
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    '>span': {
+      fontSize: '2rem',
+      marginLeft: '7px'
+    },
+    '>a':{
+      color: '#F77A0C',
+      marginRight: '28px'
+    }
+  },
   '.grid-item-product': {
     padding: '16px 10px',
     borderRadius: '6px',

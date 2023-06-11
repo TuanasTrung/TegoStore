@@ -44,7 +44,6 @@ const AuthenBox = styled(Box)(() => ({
 }))
 
 const HeaderComponent = () => {
-  const [authentication, setAuthentication] = useState(true);
   const [cookies, setCookies] = useCookies(['']);
   const dispatch = useDispatch();
   const router = useRouter();
@@ -76,7 +75,6 @@ const HeaderComponent = () => {
 
   const handleLogOut = () => {
     logOut(dispatch, userId, router.push, userAccessToken, axiosJWT)
-    // console.log(axiosJWT)
   }
   return (
     <Header className='header'>

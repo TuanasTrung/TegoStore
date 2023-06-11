@@ -27,11 +27,15 @@ const SliderGrid = () => {
 
   const renderTitle = (title) => {
     return (
-      <Box sx={{ margin: '10px 0' }}>
+      <Box className='title' sx={{ margin: '10px 0' }} >
+        <span>
+          {title}
+        </span>
         <Link href={'/allProducts'}>
-          <span>
-            {title}
-          </span>
+          <p>
+            Tất cả sản phẩm
+          </p>
+
         </Link>
       </Box>
     )

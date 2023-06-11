@@ -40,7 +40,7 @@ const ToyDetailComponent = () => {
             <Typography className='detail-name'>{product?.name}</Typography>
             <Typography className='detail-price'>{product?.price} VND</Typography>
             <Typography className='detail-status'>{product?.status}</Typography>
-            <Box className='detail-quantity'>
+            {/* <Box className='detail-quantity'>
               <Box className='change-quantity'>
                 <Button className='minus' onClick={handleMinusQuantity} disabled={quantity === 0}>
                   <RiSubtractLine color='#000' size={23} />
@@ -58,7 +58,7 @@ const ToyDetailComponent = () => {
                   </IconButton>
                 </Tooltip>
               </Box>
-            </Box>
+            </Box> */}
             <Box display={'flex'}>
               <ButtonAddCart
                 product={product} />

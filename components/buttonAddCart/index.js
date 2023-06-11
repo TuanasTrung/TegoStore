@@ -5,6 +5,7 @@ import { ButtonStyle } from './styles';
 import { Modal } from '@mui/material';
 import ModalPutBag from '../modal';
 import { addToCart } from '../../redux/Slice/cartSlice';
+import { RiShoppingCartLine } from 'react-icons/ri';
 
 const ButtonAddCart = ({ product }) => {
   const router = useRouter();
@@ -29,7 +30,8 @@ const ButtonAddCart = ({ product }) => {
   return (
     <>
       <ButtonStyle className='item-button' onClick={() => handleOpen(product)}>
-        Thêm vào giỏ hàng
+        <RiShoppingCartLine size={23} />
+        {/* Thêm vào giỏ hàng */}
       </ButtonStyle>
       <Modal
         open={open}

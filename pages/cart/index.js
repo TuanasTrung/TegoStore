@@ -1,20 +1,29 @@
 import React, { useEffect, useState } from 'react'
+import { insertOrder } from './orderSlice'
+import { createAxios } from '../../utils/createInstance'
+import { loginSuccess } from '../../redux/Slice/authSlice'
+import { DOMAIN_SERVER_API } from '../../config'
 import { useDispatch, useSelector } from 'react-redux'
 import { Box, Typography, Grid, IconButton, Button, Divider } from '@mui/material'
 import { MainContainer } from '../../components/layouts/style'
 import { CartStyles } from './styles'
 import { RiDeleteBinLine, RiSubtractLine, RiAddLine, RiMapPinLine } from "react-icons/ri";
 import Page from '../../components/Page';
-import { decreaseCart, addToCart, removeFromCart } from '../../redux/Slice/cartSlice'
+import { decreaseCart, addToCart, removeFromCart, clearCart } from '../../redux/Slice/cartSlice'
+import { useRouter } from 'next/router'
 
 const MyCart = () => {
   const dispatch = useDispatch();
-  const [temporaryTotal, setTemporaryTotal] = useState(0);
-  const [shippingFee, setShippingFee] = useState(10000)
-  const totalBill = temporaryTotal + shippingFee
-
+  const router = useRouter();
   const items = useSelector(state => state.cart?.cartItems);
-  const user = useSelector(state => state.auth.login?.currentUser)
+  const user = useSelector(state => state.auth.login?.currentUser);
+  const accessToken = user?.accessToken;
+
+  const axiosJWT = createAxios(user, dispatch, loginSuccess)
+  const [temporaryTotal, setTemporaryTotal] = useState(0);
+  const [shippingFee, setShippingFee] = useState(0);
+  const totalBill = temporaryTotal + shippingFee;
+
 
   useEffect(() => {
     let firstProduct = 0;
@@ -23,10 +32,14 @@ const MyCart = () => {
       firstProduct += totalProduct
     }
     setTemporaryTotal(firstProduct)
-    if (temporaryTotal !== 0) {
+    if (firstProduct !== 0) {
       setShippingFee(20000)
     }
   }, [items])
+
+  useEffect(() => {
+    !user?._id && router.push('/login')
+  })
 
   const handleMinusQuantity = (product) => {
     dispatch(decreaseCart(product));
@@ -40,11 +53,27 @@ const MyCart = () => {
     dispatch(removeFromCart(product))
   }
 
-  const handlePaymentBill = () => {
-
+  const handlePaymentBill = async () => {
+    const resProducts = await items.map((item) => ({
+      productId: item._id,
+      productName: item.name,
+      productPrice: item.price,
+      productImage: item.image,
+      cartQuantity: item.cartQuantity,
+    }))
+    const bill = {
+      userId: user?._id,
+      products: resProducts,
+      shippingFee: shippingFee,
+      total: totalBill,
+    }
+    await insertOrder(bill, router.push, accessToken, axiosJWT);
+    dispatch(clearCart());
   }
-  
+
   return (
+    // <>
+    //   {user?._id ? (
     <Page title='Giỏ hàng'>
       <MainContainer>
         <CartStyles>
@@ -122,7 +151,7 @@ const MyCart = () => {
                     </Grid>
                   </Grid>
                   <Box>
-                    <Button className='button' onClick={() => handlePaymentBill}>THANH TOÁN</Button>
+                    <Button className='button' onClick={handlePaymentBill}>THANH TOÁN</Button>
                   </Box>
                 </Box>
               </Box>
@@ -131,6 +160,10 @@ const MyCart = () => {
         </CartStyles>
       </MainContainer>
     </Page>
+    // ) : (
+    //   router.push('/login')
+    // )}
+    // </>
   )
 }
 

@@ -10,7 +10,7 @@ const ModalPutBag = ({ handleClose, idProduct }) => {
   const dispatch = useDispatch();
   const product = useSelector(state => state.product.product?.product)
 
-  React.useEffect(()=>{
+  React.useEffect(() => {
     getProductById(idProduct, dispatch)
   }, [])
 

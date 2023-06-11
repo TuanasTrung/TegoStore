@@ -2,7 +2,7 @@ import React from 'react'
 import NextLink from "next/link";
 // import { makeStyles } from "@mui/styles";
 import { PopoverStyle } from './styles'
-import { RiProfileLine, RiShoppingCartLine, RiHistoryLine, RiLogoutBoxRLine } from "react-icons/ri";
+import { RiProfileLine, RiShoppingCartLine, RiHistoryLine, RiLogoutBoxRLine, RiAdminLine } from "react-icons/ri";
 import { MenuList, MenuItem, ListItemIcon, ListItemText, Paper } from '@mui/material';
 
 // const useStyles = makeStyles(() => ({
@@ -60,10 +60,9 @@ const PopoverProfile = ({ handleLogout }) => {
       href: '/history-cart',
     },
     {
-      title: 'Log out',
-      icon: RiLogoutBoxRLine,
-      href: '/',
-      onClick: { handleLogout }
+      title: 'Trang Admin',
+      icon: RiAdminLine,
+      href: '/admin',
     },
   ]
   return (
@@ -90,6 +89,12 @@ const PopoverProfile = ({ handleLogout }) => {
               </NextLink>
             )
           })}
+          <MenuItem sx={styledMenuItem} disableRipple={true} onClick={handleLogout}>
+            <ListItemIcon sx={{ margin: 0 }}>
+              <RiLogoutBoxRLine size={20} color='#F77A0C' disabled />
+            </ListItemIcon>
+            <ListItemText>Log out</ListItemText>
+          </MenuItem>
         </MenuList>
       </Paper>
     </PopoverStyle>

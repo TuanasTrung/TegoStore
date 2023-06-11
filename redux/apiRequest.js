@@ -9,12 +9,16 @@ import {
   registerFailed,
   logoutStart,
   logoutFailed,
-  logoutSuccess
+  logoutSuccess,
+  updateStart,
+  updateSuccess,
+  updateFailed
 } from './Slice/authSlice';
 import {
+  getUserByIdSuccess,
   getUsersFailed,
   getUsersStart,
-  getUsersSuccess
+  getUsersSuccess,
 } from './Slice/usersSlice';
 import {
   getProductsFailed,
@@ -36,7 +40,7 @@ export const loginUser = async (user, dispatch, navigate) => {
     navigate('/');
   } catch (error) {
     dispatch(loginFailed())
-    console.log(error)
+    console.log(error.message)
   }
 }
 
@@ -51,10 +55,10 @@ export const registerUser = async (user, dispatch, navigate) => {
   }
 }
 
-export const getAllUsers = async (accessToken, dispatch) => {
+export const getAllUsers = async (accessToken, dispatch, axiosJWT) => {
   dispatch(getUsersStart);
   try {
-    const res = await axios.get(`${DOMAIN_SERVER_API}/users`, {
+    const res = await axiosJWT.get(`${DOMAIN_SERVER_API}/users`, {
       headers: { token: `Bearer ${accessToken}` }
     });
     dispatch(getUsersSuccess(res.data));
@@ -93,5 +97,36 @@ export const logOut = async (dispatch, id, navigate, accessToken, axiosJWT) => {
     dispatch(logoutSuccess())
   } catch (error) {
     dispatch(logoutFailed())
+  }
+}
+
+export const updateUser = async (dispatch, user, axiosJWT) => {
+  dispatch(updateStart)
+  try {
+    const res = await axiosJWT.put(`${DOMAIN_SERVER_API}/users/${user._id}`, user)
+    dispatch(updateSuccess(res.data))
+  } catch (error) {
+    dispatch(updateFailed(error))
+  }
+}
+
+export const deleteUser = async (id) => {
+  try {
+    const res = await axios.delete(`${DOMAIN_SERVER_API}/users/${id}`)
+    // dispatch(updateSuccess(res.data))
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+export const getUserById = async (id, accessToken, dispatch, axiosJWT) => {
+  dispatch(getUsersStart())
+  try {
+    const res = await axiosJWT.get(`${DOMAIN_SERVER_API}/users/${id}`, {
+      headers: { token: `Bearer ${accessToken}` }
+    })
+    dispatch(getUserByIdSuccess(res.data))
+  } catch (error) {
+    dispatch(getUsersFailed())
   }
 }
