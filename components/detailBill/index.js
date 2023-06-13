@@ -7,7 +7,7 @@ import { useRouter } from 'next/router';
 
 const DetailBill = () => {
   const router = useRouter();
-  const orders = useSelector(state => state.orders.orders?.order)
+  const orders = useSelector(state => state.orders.orders?.allOrders)
   const user = useSelector(state => state.auth.login?.currentUser)
   const [order, setOrder] = useState({})
   const [products, setProducts] = useState([])
@@ -21,9 +21,7 @@ const DetailBill = () => {
       }
     }
   }, [])
-
-  console.log(order)
-  console.log(products)
+  
   return (
     <CartStyles>
       <Box className='my-cart'>
@@ -74,6 +72,14 @@ const DetailBill = () => {
                   {products?.total} VND
                 </Grid>
               </Grid> */}
+              <Grid container>
+                <Grid item md={8}>
+                  <Typography>Trạng thái </Typography>
+                </Grid>
+                <Grid item md={4} display={'flex'} justifyContent={'end'} style={{ fontWeight: 600 }}>
+                  {order?.delivery_status}
+                </Grid>
+              </Grid>
               <Grid container>
                 <Grid item md={8}>
                   <Typography>Phí giao hàng</Typography>

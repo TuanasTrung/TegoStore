@@ -18,6 +18,7 @@ import { createAxios } from '../../utils/createInstance';
 import { loginSuccess } from '../../redux/Slice/authSlice';
 import AdminOrder from '../adminOrder';
 import AdminProduct from '../adminProduct';
+import { getAllOrders } from '../../pages/cart/orderSlice';
 
 const styledMenuItem = {
   padding: '12px 10px',
@@ -76,6 +77,7 @@ const AdminComponent = () => {
 
   useEffect(() => {
     getAllUsers(user?.accessToken, dispatch, axiosJWT)
+    getAllOrders(dispatch)
   }, [])
 
   const TabPanel = (props) => {

@@ -13,6 +13,17 @@ const styles = {
   height: '50px'
 }
 
+const buttonSx = {
+  border: '1px solid #F77A0C',
+  backgroundColor: '#F77A0C',
+  color: 'white',
+  marginBottom: '20px',
+  '&:hover': {
+    color: '#F77A0C',
+    backgroundColor: 'white'
+  }
+}
+
 const AdminProduct = ({ data }) => {
   const [users, setUsers] = useState([])
   const router = useRouter();
@@ -35,11 +46,19 @@ const AdminProduct = ({ data }) => {
 
   return (
     <AUS>
+      <Box display={'flex'} justifyContent={'end'} width={'96.5%'}>
+        <Button sx={buttonSx}>Thêm</Button>
+      </Box>
       <Table
         // rowSelection={{
         //   ...rowSelection,
         // }}
         columns={[
+          {
+            title: 'Hình ảnh',
+            dataIndex: 'image',
+            render: (text) => <img style={styles} src={text} />
+          },
           {
             title: 'Mã sản phẩm',
             dataIndex: '_id',
@@ -48,11 +67,6 @@ const AdminProduct = ({ data }) => {
           {
             title: 'Tên',
             dataIndex: 'name',
-          },
-          {
-            title: 'Hình ảnh',
-            dataIndex: 'image',
-            render: (text) => <img style={styles} src={text}/>
           },
           {
             title: 'Số lượng',

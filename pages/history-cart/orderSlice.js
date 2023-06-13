@@ -2,10 +2,10 @@ import axios from "axios"
 import { DOMAIN_SERVER_API } from "../../config"
 import { getOrdersStart, getOrdersSuccess, getOrdersFailed } from "../../redux/Slice/orderSlice"
 
-export const getHistoryCart = async (user, dispatch) => {
+export const getHistoryCart = async (id, dispatch) => {
   dispatch(getOrdersStart())
   try {
-    const res = await axios.get(`${DOMAIN_SERVER_API}/orders/${user?._id}`
+    const res = await axios.get(`${DOMAIN_SERVER_API}/orders/${id}`
       // , {
       //   headers: { token: `Bearer ${accessToken}` }
       // }
@@ -21,5 +21,14 @@ export const deleteOrderById = async (id) => {
     await axios.delete(`${DOMAIN_SERVER_API}/orders/${id}`)
   } catch (err) {
     console.log(err)
+  }
+}
+
+export const updateOrderById = async (id, user, dispatch, userId) => {
+  try {
+    await axios.put(`${DOMAIN_SERVER_API}/orders/${id}`, user)
+    await getHistoryCart(userId, dispatch)
+  } catch (error) {
+    console.log(error)
   }
 }

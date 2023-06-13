@@ -17,7 +17,7 @@ const HistoryCart = () => {
   }, [])
 
   useEffect(() => {
-    getHistoryCart(user, dispatch)
+    getHistoryCart(user?._id, dispatch)
   }, [])
 
   return (

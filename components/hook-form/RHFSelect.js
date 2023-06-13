@@ -1,6 +1,6 @@
 import { Controller, useFormContext } from 'react-hook-form'
 
-import { Select } from 'antd'
+import { Select } from '@mui/material'
 
 export default function RHFSelect({ name = '', onChange, ...other }) {
   const { control } = useFormContext();
@@ -22,7 +22,7 @@ export default function RHFSelect({ name = '', onChange, ...other }) {
             {...otherField}
             error={!!error}
             errorMessage={error?.message}
-            sx={{ width: '100%' }}
+            sx={{ width: '89.4%' }}
             {...other}
           />
         )

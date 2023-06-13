@@ -45,8 +45,6 @@ const FormEditInfor = ({
       _id: user?._id,
       ...data
     }
-    console.log('data: ', update)
-    console.log('data: ', user?._id)
     updateUser(dispatch, update, axiosJWT)
     setOpenFormEdit(false)
   }
