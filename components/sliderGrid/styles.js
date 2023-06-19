@@ -10,7 +10,7 @@ export const SliderGridStyle = styled('div')(() => ({
       fontSize: '2rem',
       marginLeft: '7px'
     },
-    '>a':{
+    '>a': {
       color: '#F77A0C',
       marginRight: '28px'
     }
@@ -26,6 +26,7 @@ export const SliderGridStyle = styled('div')(() => ({
   '.grid-item-image': {
     height: '100%',
     minHeight: '340px',
+    maxHeight: '340px',
     padding: '5px',
     marginBottom: '10px',
     display: 'flex',

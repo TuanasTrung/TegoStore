@@ -27,6 +27,7 @@ export const GridPageStyle = styled('div')(() => ({
   '.grid-item-image': {
     height: '100%',
     minHeight: '340px',
+    maxHeight: '340px',
     padding: '5px',
     marginBottom: '10px',
     display: 'flex',

@@ -113,6 +113,10 @@ const UserBottom = () => {
             dataIndex: 'total',
           },
           {
+            title: 'Phương thức thanh toán',
+            dataIndex: 'payment_status',
+          },
+          {
             title: 'Trạng thái',
             dataIndex: 'delivery_status',
             render: (text, index) => (
@@ -136,7 +140,7 @@ const UserBottom = () => {
             dataIndex: 'action',
             render: (data, index) => (
               <ButtonFunction>
-                <Box width='50%' display={'flex'} justifyContent={'space-between'}>
+                <Box width='80%' display={'flex'} justifyContent={'space-between'}>
                   <Button onClick={() => handleEdit(index)} className='btn'>Sửa</Button>
                   <Button onClick={() => handleDelete(index._id)} className='btn'>Xóa</Button>
                 </Box>

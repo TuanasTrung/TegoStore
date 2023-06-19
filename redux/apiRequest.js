@@ -30,6 +30,7 @@ import {
   getProductSuccess,
   getProductFailed
 } from './Slice/productSlice';
+import { toast } from 'react-toastify';
 
 
 export const loginUser = async (user, dispatch, navigate) => {
@@ -70,7 +71,7 @@ export const getAllUsers = async (accessToken, dispatch, axiosJWT) => {
 export const getAllProducts = async (products, dispatch) => {
   dispatch(getProductsStart);
   try {
-    const res = await axios.get(`${DOMAIN_SERVER_API}/products`, products);
+    const res = await axios.get(`${DOMAIN_SERVER_API}/products`);
     dispatch(getProductsSuccess(res.data));
   } catch (error) {
     dispatch(getProductsFailed())
@@ -128,5 +129,33 @@ export const getUserById = async (id, accessToken, dispatch, axiosJWT) => {
     dispatch(getUserByIdSuccess(res.data))
   } catch (error) {
     dispatch(getUsersFailed())
+  }
+}
+
+export const InsertNewProduct = async (product, dispatch) => {
+  try {
+    await axios.post(`${DOMAIN_SERVER_API}/products/`, product)
+    getAllProducts(product, dispatch)
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+export const DeleteProduct = async (id) => {
+  try {
+    await axios.delete(`${DOMAIN_SERVER_API}/products/${id}`);
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+export const EditProduct = async (dispatch, id, product, getAll = true) => {
+  try {
+    await axios.put(`${DOMAIN_SERVER_API}/products/${id}`, product);
+    if (getAll) {
+      getAllProducts(product, dispatch)
+    }
+  } catch (error) {
+    console.log(error)
   }
 }

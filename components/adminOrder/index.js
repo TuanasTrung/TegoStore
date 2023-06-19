@@ -14,6 +14,8 @@ import { RiCloseFill } from 'react-icons/ri'
 import { useForm, useFieldArray } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup';
 import RHFTextField from '../hook-form/RHFTextField'
+import { deleteOrderById, updateOrderById } from '../../pages/history-cart/orderSlice'
+import { useDispatch } from 'react-redux'
 
 const styles = {
   width: '50px',
@@ -21,8 +23,10 @@ const styles = {
 }
 
 const AdminOrder = ({ data }) => {
+  const dispatch = useDispatch();
   const [users, setUsers] = useState([]);
   const [open, setOpen] = useState(false);
+  const [status, setStatus] = useState('')
   const router = useRouter();
   const showData = data;
 
@@ -49,12 +53,20 @@ const AdminOrder = ({ data }) => {
   }, [showData]);
 
   const handleDelete = (id) => {
-    deleteUser(id);
+    // deleteUser(id);
+    deleteOrderById(id)
   };
 
-  const handleEdit = () => {
-    setOpen(true);
-    getHistoryCart
+  const handleChange = (value) => {
+    setStatus(value)
+  }
+
+  const handleEdit = (data) => {
+    const update = {
+      ...data,
+      delivery_status: status,
+    }
+    updateOrderById(data._id, update, dispatch, data.userId)
   };
 
   const onCloseModal = () => {
@@ -88,6 +100,10 @@ const AdminOrder = ({ data }) => {
             dataIndex: 'total',
           },
           {
+            title: 'Phương thức thanh toán',
+            dataIndex: 'payment_status',
+          },
+          {
             title: 'Trạng thái',
             dataIndex: 'delivery_status',
             render: (text, index) => (
@@ -95,7 +111,7 @@ const AdminOrder = ({ data }) => {
                 <Select
                   defaultValue={text}
                   style={{ width: 120 }}
-                  // onChange={handleChange}
+                  onChange={handleChange}
                   options={provinceData.map((province) => ({ label: province, value: province }))}
                 />
               </Box>
@@ -110,7 +126,7 @@ const AdminOrder = ({ data }) => {
             title: '',
             dataIndex: 'action',
             render: (data, index) => (
-              <ButtonFunction>
+              <ButtonFunction style={{width: '100%'}}>
                 <Button onClick={() => handleEdit(index)} className='btn'>Cập nhật</Button>
                 <Button onClick={() => handleDelete(index._id)} className='btn'>Xóa</Button>
               </ButtonFunction>

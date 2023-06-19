@@ -1,29 +1,37 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import { insertOrder } from './orderSlice'
 import { createAxios } from '../../utils/createInstance'
 import { loginSuccess } from '../../redux/Slice/authSlice'
 import { DOMAIN_SERVER_API } from '../../config'
 import { useDispatch, useSelector } from 'react-redux'
 import { Box, Typography, Grid, IconButton, Button, Divider } from '@mui/material'
+import { Radio } from 'antd'
 import { MainContainer } from '../../components/layouts/style'
 import { CartStyles } from './styles'
 import { RiDeleteBinLine, RiSubtractLine, RiAddLine, RiMapPinLine } from "react-icons/ri";
 import Page from '../../components/Page';
 import { decreaseCart, addToCart, removeFromCart, clearCart } from '../../redux/Slice/cartSlice'
 import { useRouter } from 'next/router'
+import { EditProduct } from '../../redux/apiRequest'
 
 const MyCart = () => {
   const dispatch = useDispatch();
   const router = useRouter();
   const items = useSelector(state => state.cart?.cartItems);
   const user = useSelector(state => state.auth.login?.currentUser);
+  const products = useSelector(state => state.products.products?.allProducts);
   const accessToken = user?.accessToken;
+  const reff = useRef(false)
 
   const axiosJWT = createAxios(user, dispatch, loginSuccess)
   const [temporaryTotal, setTemporaryTotal] = useState(0);
   const [shippingFee, setShippingFee] = useState(0);
   const totalBill = temporaryTotal + shippingFee;
+  const [radioBtn, setRadioBtn] = useState('Tiền mặt')
 
+  const onChange = (e) => {
+    setRadioBtn(e.target.value)
+  }
 
   useEffect(() => {
     let firstProduct = 0;
@@ -35,7 +43,7 @@ const MyCart = () => {
     if (firstProduct !== 0) {
       setShippingFee(20000)
     }
-  }, [items])
+  }, [items, reff])
 
   useEffect(() => {
     !user?._id && router.push('/login')
@@ -66,9 +74,16 @@ const MyCart = () => {
       products: resProducts,
       shippingFee: shippingFee,
       total: totalBill,
+      payment_status: radioBtn,
     }
+    console.log(bill)
     await insertOrder(bill, router.push, accessToken, axiosJWT);
+    for (let i = 0; i < resProducts.length; i++) {
+      const found = products.find(({ _id }) => _id === resProducts[i].productId)
+      await EditProduct(dispatch, resProducts[i].productId, { quantity: found.quantity - resProducts[i].cartQuantity })
+    }
     dispatch(clearCart());
+    reff.current = true
   }
 
   return (
@@ -142,7 +157,7 @@ const MyCart = () => {
                       {shippingFee} VND
                     </Grid>
                   </Grid>
-                  <Grid container>
+                  <Grid container mb={2}>
                     <Grid item md={8}>
                       <Typography sx={{ color: 'black', fontWeight: 600 }}>Tổng tiền </Typography>
                     </Grid>
@@ -150,8 +165,13 @@ const MyCart = () => {
                       {totalBill} VND
                     </Grid>
                   </Grid>
-                  <Box>
-                    <Button className='button' onClick={handlePaymentBill}>THANH TOÁN</Button>
+                  <Radio.Group onChange={onChange} defaultValue={'Tiền mặt'}>
+                    <Radio.Button value={'Tiền mặt'}>Tiền mặt</Radio.Button>
+                    <Radio.Button value={'Chuyển khoản'}>Chuyển khoản</Radio.Button>
+                    <Radio.Button value={'Visa'}>Visa</Radio.Button>
+                  </Radio.Group>
+                  <Box mt={3}>
+                    <Button className='button' onClick={handlePaymentBill}>ĐẶT HÀNG</Button>
                   </Box>
                 </Box>
               </Box>

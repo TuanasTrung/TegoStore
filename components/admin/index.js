@@ -13,7 +13,7 @@ import { RiNumbersLine, RiGroupLine, RiBillLine, RiStarLine } from "react-icons/
 import Dashboard from '../dashboard';
 import AdminUser from '../adminUser';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllUsers } from '../../redux/apiRequest';
+import { getAllProducts, getAllUsers } from '../../redux/apiRequest';
 import { createAxios } from '../../utils/createInstance';
 import { loginSuccess } from '../../redux/Slice/authSlice';
 import AdminOrder from '../adminOrder';
@@ -78,6 +78,7 @@ const AdminComponent = () => {
   useEffect(() => {
     getAllUsers(user?.accessToken, dispatch, axiosJWT)
     getAllOrders(dispatch)
+    getAllProducts(products, dispatch)
   }, [])
 
   const TabPanel = (props) => {
