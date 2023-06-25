@@ -82,9 +82,7 @@ const HeaderComponent = () => {
         <Box className='header-left'>
           <Link href={'/'}>
             <Box className='header-title'>
-              <span>
-                TEGO
-              </span>
+            <img src={'/assets/logo.png'} style={{ width: '100%', height: '100%' }} />
             </Box>
           </Link>
           <Search />

@@ -6,7 +6,7 @@ import { useForm } from 'react-hook-form'
 import { RegisterFormStyle } from './styles'
 import * as Yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
-import { RiAtLine, RiLock2Line, RiHome2Line, RiPhoneLine } from "react-icons/ri";
+import { RiAtLine, RiLock2Line, RiHome2Line, RiPhoneLine, RiUser3Line } from "react-icons/ri";
 import { Box, Stack, IconButton, Button } from '@mui/material'
 import { registerUser } from '../../../redux/apiRequest'
 
@@ -44,7 +44,6 @@ const RegisterForm = () => {
   } = methods
 
   const onSubmit = (data) => {
-    console.log('data: ', data)
     registerUser(data, dispatch, router.push)
   }
 
@@ -66,11 +65,11 @@ const RegisterForm = () => {
 
             <Box className='input-field'>
               <IconButton disableRipple>
-                <RiAtLine />
+                <RiUser3Line />
               </IconButton>
               <RHFTextField
                 name='username'
-                label='Username'
+                label='Tên người dùng'
                 required
               />
             </Box>

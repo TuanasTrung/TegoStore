@@ -10,11 +10,11 @@ const Login = () => {
     <Page title='Đăng nhập'>
       <FormStyle>
         <Box className='form-style'>
-          <Box>
-            <Typography>LOGIN</Typography>
+          <Box height={'50px'} width={'170px'} mb={2}>
+            <img src={'/assets/logo.png'} style={{ width: '100%', height: '100%' }} />
           </Box>
           <Box>
-            logo
+            <Typography>LOGIN</Typography>
           </Box>
           <LoginForm />
         </Box>

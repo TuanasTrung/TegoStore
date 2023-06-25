@@ -39,12 +39,12 @@ const styledMenuItem = {
 };
 
 const menu = [
-  {
-    index: 0,
-    title: 'Dashboard',
-    icon: RiNumbersLine,
-    href: '/profile',
-  },
+  // {
+  //   index: 0,
+  //   title: 'Dashboard',
+  //   icon: RiNumbersLine,
+  //   href: '/profile',
+  // },
   {
     index: 1,
     title: 'Danh sách tài khoản',
@@ -67,7 +67,7 @@ const menu = [
 
 const AdminComponent = () => {
   const dispatch = useDispatch();
-  const [value, setValue] = React.useState(0);
+  const [value, setValue] = React.useState(1);
   const user = useSelector(state => state.auth.login?.currentUser)
   const users = useSelector(state => state.users.users?.allusers) || []
   const order = useSelector(state => state.orders.orders?.allOrders)
@@ -137,9 +137,9 @@ const AdminComponent = () => {
           </Box>
         </MuiGrid>
         <MuiGrid item md={9}>
-          <TabPanel value={value} index={0}>
-            {/* <Dashboard /> */}
-          </TabPanel>
+          {/* <TabPanel value={value} index={0}>
+            <Dashboard />
+          </TabPanel> */}
           <TabPanel value={value} index={1}>
             <AdminUser data={showData} />
           </TabPanel>

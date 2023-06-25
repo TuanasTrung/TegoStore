@@ -333,7 +333,7 @@ const AdminProduct = ({ data }) => {
                 style={{ width: '100%' }}
               >
                 <Box display={'flex'} justifyContent={'space-between'}>
-                  <Button sx={{ border: '1px solid #F77A0C', color: '#F77A0C' }}>
+                  <Button sx={{ border: '1px solid #F77A0C', color: '#F77A0C' }} onClick={handleCancelEdit}>
                     Hủy
                   </Button>
                   <Button

@@ -53,7 +53,7 @@ const TableAntd = ({ orders }) => {
             render: (data, index) => (
               <ButtonFunction>
                 {/* <Button onClick={() => handleEdit(index._id)} className='edit'>Sửa</Button> */}
-                <Button onClick={() => handleDelete(index._id)} className='delete'>Xóa</Button>
+                <Button onClick={() => handleDelete(index._id)} className='btn'>Xóa</Button>
               </ButtonFunction>
             )
           }

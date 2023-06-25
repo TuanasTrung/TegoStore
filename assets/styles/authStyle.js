@@ -2,7 +2,7 @@ import { styled } from "@mui/material/styles";
 import { Box } from '@mui/material';
 
 export const FormStyle = styled(Box)(() => ({
-  height: '100vh',
+  height: '90vh',
   width: '100vw',
   display: 'flex',
   flexDirection: 'column',
